@@ -8,11 +8,11 @@ import java.util.Optional;
 import org.example.mrepository.core.MStore;
 import org.example.mrepository.core.PropertyAccess;
 
-public class FindByInvoker extends MRepositoryMethodInvoker {
+public class FindByInvoker<E> extends MRepositoryMethodInvoker<E> {
 
-    private final PropertyAccess<Object> props;
+    private final PropertyAccess<E> props;
 
-    public FindByInvoker(MStore<Object, Object> store, PropertyAccess<Object> props) {
+    public FindByInvoker(MStore<Object, E> store, PropertyAccess<E> props) {
         super(store);
         this.props = props;
     }
@@ -38,7 +38,7 @@ public class FindByInvoker extends MRepositoryMethodInvoker {
         var propsNames = tokens.stream().map(this::lowerFirst).toList();
 
         // 필터링 (동등 비교만)
-        List<Object> result = store.values().stream()
+        List<E> result = store.values().stream()
                 .filter(e -> matchesAll(e, propsNames, args))
                 .toList();
 
@@ -56,7 +56,7 @@ public class FindByInvoker extends MRepositoryMethodInvoker {
         return null; // not found
     }
 
-    private boolean matchesAll(Object entity, List<String> propsNames, Object[] args) {
+    private boolean matchesAll(E entity, List<String> propsNames, Object[] args) {
         for (int i = 0; i < propsNames.size(); i++) {
             Object v = props.get(entity, propsNames.get(i));
             Object p = args[i];

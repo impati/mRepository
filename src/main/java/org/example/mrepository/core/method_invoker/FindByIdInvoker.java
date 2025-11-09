@@ -3,9 +3,9 @@ package org.example.mrepository.core.method_invoker;
 import java.lang.reflect.Method;
 import org.example.mrepository.core.MStore;
 
-public class FindByIdInvoker extends MRepositoryMethodInvoker {
+public class FindByIdInvoker<E> extends MRepositoryMethodInvoker<E> {
 
-    public FindByIdInvoker(MStore<Object, Object> store) {
+    public FindByIdInvoker(MStore<Object, E> store) {
         super(store);
     }
 

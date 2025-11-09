@@ -5,9 +5,9 @@ import java.util.List;
 import org.example.mrepository.core.MStore;
 import org.example.mrepository.utils.CollectionUtils;
 
-public class DeleteInvoker extends MRepositoryMethodInvoker {
+public class DeleteInvoker<E> extends MRepositoryMethodInvoker<E> {
 
-    protected DeleteInvoker(final MStore<Object, Object> store) {
+    protected DeleteInvoker(final MStore<Object, E> store) {
         super(store);
     }
 
@@ -17,14 +17,15 @@ public class DeleteInvoker extends MRepositoryMethodInvoker {
                 ("deleteAll".equals(method.getName()) && method.getParameterCount() == 1);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Object invoke(final Method method, final Object[] args) {
         Object obj = args[0];
         if (obj instanceof List<?>) {
-            store.deleteAll(CollectionUtils.toCollection(obj));
+            store.deleteAll((List<E>) CollectionUtils.toCollection(obj));
             return "";
         }
 
-        return store.delete(obj);
+        return store.delete((E) obj);
     }
 }

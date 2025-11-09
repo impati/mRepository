@@ -5,9 +5,9 @@ import java.util.List;
 import org.example.mrepository.core.MStore;
 import org.example.mrepository.utils.CollectionUtils;
 
-public class SaveInvoker extends MRepositoryMethodInvoker {
+public class SaveInvoker<E> extends MRepositoryMethodInvoker<E> {
 
-    public SaveInvoker(final MStore<Object, Object> store) {
+    public SaveInvoker(final MStore<Object, E> store) {
         super(store);
     }
 
@@ -16,13 +16,14 @@ public class SaveInvoker extends MRepositoryMethodInvoker {
                 ("saveAll".equals(method.getName()) && method.getParameterCount() == 1);
     }
 
+    @SuppressWarnings("unchecked")
     public Object invoke(Method method, Object[] args) {
         Object obj = args[0];
         if (obj instanceof List<?>) {
-            store.saveAll(CollectionUtils.toCollection(obj));
+            store.saveAll((List<E>) CollectionUtils.toCollection(obj));
             return "";
         }
 
-        return store.save(obj);
+        return store.save((E) obj);
     }
 }
