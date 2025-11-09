@@ -1,9 +1,9 @@
-package org.example.mrepository.core.method_invoker;
+package org.example.impati.core.method_invoker;
 
 import java.lang.reflect.Method;
 import java.util.List;
-import org.example.mrepository.core.MStore;
-import org.example.mrepository.utils.CollectionUtils;
+import org.example.impati.core.MStore;
+import org.example.impati.utils.CollectionUtils;
 
 public class SaveInvoker<E> extends MRepositoryMethodInvoker<E> {
 

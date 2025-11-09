@@ -1,8 +1,8 @@
-package org.example.mrepository.core.method_invoker;
+package org.example.impati.core.method_invoker;
 
 import java.util.List;
-import org.example.mrepository.core.MStore;
-import org.example.mrepository.core.PropertyAccess;
+import org.example.impati.core.MStore;
+import org.example.impati.core.PropertyAccess;
 
 public class MRepositoryInvokerFactory {
 

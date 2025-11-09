@@ -1,4 +1,4 @@
-package org.example.mrepository.core;
+package org.example.impati.core;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

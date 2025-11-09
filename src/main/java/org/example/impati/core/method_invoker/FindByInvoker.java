@@ -1,12 +1,12 @@
-package org.example.mrepository.core.method_invoker;
+package org.example.impati.core.method_invoker;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import org.example.mrepository.core.MStore;
-import org.example.mrepository.core.PropertyAccess;
+import org.example.impati.core.MStore;
+import org.example.impati.core.PropertyAccess;
 
 public class FindByInvoker<E> extends MRepositoryMethodInvoker<E> {
 

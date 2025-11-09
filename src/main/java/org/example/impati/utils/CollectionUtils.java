@@ -1,4 +1,4 @@
-package org.example.mrepository.utils;
+package org.example.impati.utils;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;

@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'org.example.impati'
-version = '1.0.2'
+version = '1.0.3'
 description = 'm-repository'
 
 java {

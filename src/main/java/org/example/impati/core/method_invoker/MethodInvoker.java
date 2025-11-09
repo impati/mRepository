@@ -1,4 +1,4 @@
-package org.example.mrepository.core.method_invoker;
+package org.example.impati.core.method_invoker;
 
 import java.lang.reflect.Method;
 

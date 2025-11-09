@@ -1,10 +1,10 @@
-package org.example.mrepository.core;
+package org.example.impati.core;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
-import org.example.mrepository.core.method_invoker.MRepositoryInvokerFactory;
-import org.example.mrepository.core.method_invoker.MRepositoryMethodInvoker;
+import org.example.impati.core.method_invoker.MRepositoryInvokerFactory;
+import org.example.impati.core.method_invoker.MRepositoryMethodInvoker;
 
 public class MRepositoryFactory {
 

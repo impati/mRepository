@@ -1,6 +1,6 @@
-package org.example.mrepository.core.method_invoker;
+package org.example.impati.core.method_invoker;
 
-import org.example.mrepository.core.MStore;
+import org.example.impati.core.MStore;
 
 public abstract class MRepositoryMethodInvoker<E> implements MethodInvoker {
 

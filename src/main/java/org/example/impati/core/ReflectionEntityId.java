@@ -1,4 +1,4 @@
-package org.example.mrepository.core;
+package org.example.impati.core;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;

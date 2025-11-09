@@ -1,6 +1,9 @@
-package org.example.mrepository.core;
+package org.example.impati;
 
 import java.util.List;
+import org.example.impati.core.MId;
+import org.example.impati.core.MRepository;
+import org.example.impati.core.MRepositoryFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
