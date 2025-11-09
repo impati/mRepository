@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.5.7'
     id 'io.spring.dependency-management' version '1.1.7'
+    id 'maven-publish'
 }
 
 group = 'org.example'
@@ -9,6 +10,8 @@ version = '0.0.1-SNAPSHOT'
 description = 'm-repository'
 
 java {
+    withSourcesJar()    // JitPack 에서 소스 JAR 제공
+    withJavadocJar()    // JitPack 에서 Javadoc JAR 제공
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }
@@ -16,6 +19,13 @@ java {
 
 repositories {
     mavenCentral()
+}
+
+dependencyManagement {
+
+    imports {
+        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+    }
 }
 
 dependencies {
@@ -26,4 +36,12 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
 }
