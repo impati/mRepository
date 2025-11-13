@@ -9,7 +9,7 @@ public class MRepositoryInvokerFactory {
     private MRepositoryInvokerFactory() {
     }
 
-    public static <E> List<MRepositoryMethodInvoker<E>> create(Class<E> entityType) {
+    public static <E> List<MRepositoryMethodInvoker<E>> defaultCreate(Class<E> entityType) {
         MStore<Object, E> store;
         store = new MStore<>(entityType);
 

@@ -2,6 +2,7 @@ package org.example.impati.core;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import org.example.impati.core.method_invoker.MRepositoryInvokerFactory;
 import org.example.impati.core.method_invoker.MRepositoryMethodInvoker;
@@ -12,11 +13,19 @@ public class MRepositoryFactory {
     }
 
     @SuppressWarnings("unchecked")
+    public static <K, E, T extends MRepository<K, E>> T create(Class<T> repoInterface, List<MRepositoryMethodInvoker<E>> methodInvokers) {
+        Class<E> entityType = (Class<E>) resolveEntityType(repoInterface);
+        List<MRepositoryMethodInvoker<E>> finalMethodInvokers = new ArrayList<>(methodInvokers);
+        finalMethodInvokers.addAll(MRepositoryInvokerFactory.defaultCreate(entityType));
+
+        return new MRepositoryProxy<>(repoInterface, finalMethodInvokers).create();
+    }
+
+    @SuppressWarnings("unchecked")
     public static <K, E, T extends MRepository<K, E>> T create(Class<T> repoInterface) {
         Class<E> entityType = (Class<E>) resolveEntityType(repoInterface);
-        List<MRepositoryMethodInvoker<E>> methodInvokers = MRepositoryInvokerFactory.create(entityType);
 
-        return new MRepositoryProxy<>(repoInterface, methodInvokers).create();
+        return create(repoInterface, MRepositoryInvokerFactory.defaultCreate(entityType));
     }
 
     private static Class<?> resolveEntityType(Class<?> repoInterface) {
