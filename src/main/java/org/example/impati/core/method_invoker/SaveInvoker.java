@@ -5,11 +5,7 @@ import java.util.List;
 import org.example.impati.core.MStore;
 import org.example.impati.utils.CollectionUtils;
 
-public class SaveInvoker<E> extends MRepositoryMethodInvoker<E> {
-
-    public SaveInvoker(final MStore<Object, E> store) {
-        super(store);
-    }
+public class SaveInvoker<E> implements MRepositoryMethodInvoker<E> {
 
     public boolean supports(Method method) {
         return ("save".equals(method.getName()) && method.getParameterCount() == 1) ||
@@ -17,7 +13,8 @@ public class SaveInvoker<E> extends MRepositoryMethodInvoker<E> {
     }
 
     @SuppressWarnings("unchecked")
-    public Object invoke(Method method, Object[] args) {
+    @Override
+    public Object invoke(final MStore<Object, E> store, final Method method, final Object[] args) {
         Object obj = args[0];
         if (obj instanceof List<?>) {
             store.saveAll((List<E>) CollectionUtils.toCollection(obj));

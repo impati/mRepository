@@ -15,10 +15,11 @@ public class MRepositoryFactory {
     @SuppressWarnings("unchecked")
     public static <K, E, T extends MRepository<K, E>> T create(Class<T> repoInterface, List<MRepositoryMethodInvoker<E>> methodInvokers) {
         Class<E> entityType = (Class<E>) resolveEntityType(repoInterface);
+        MStore<Object, E> store = new MStore<>(entityType);
         List<MRepositoryMethodInvoker<E>> finalMethodInvokers = new ArrayList<>(methodInvokers);
         finalMethodInvokers.addAll(MRepositoryInvokerFactory.defaultCreate(entityType));
 
-        return new MRepositoryProxy<>(repoInterface, finalMethodInvokers).create();
+        return new MRepositoryProxy<>(repoInterface, store, finalMethodInvokers).create();
     }
 
     @SuppressWarnings("unchecked")

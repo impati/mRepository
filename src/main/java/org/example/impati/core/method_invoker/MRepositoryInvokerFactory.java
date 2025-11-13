@@ -14,11 +14,11 @@ public class MRepositoryInvokerFactory {
         store = new MStore<>(entityType);
 
         return List.of(
-                new SaveInvoker<>(store),
-                new FindByIdInvoker<>(store),
-                new FindAllInvoker<>(store),
-                new FindByInvoker<>(store, PropertyAccess.forType(store.entityType())),
-                new DeleteInvoker<>(store)
+                new SaveInvoker<>(),
+                new FindByIdInvoker<>(),
+                new FindAllInvoker<>(),
+                new FindByInvoker<>(PropertyAccess.forType(store.entityType())),
+                new DeleteInvoker<>()
         );
     }
 }

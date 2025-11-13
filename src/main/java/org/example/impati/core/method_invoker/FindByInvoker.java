@@ -8,12 +8,11 @@ import java.util.Optional;
 import org.example.impati.core.MStore;
 import org.example.impati.core.PropertyAccess;
 
-public class FindByInvoker<E> extends MRepositoryMethodInvoker<E> {
+public class FindByInvoker<E> implements MRepositoryMethodInvoker<E> {
 
     private final PropertyAccess<E> props;
 
-    public FindByInvoker(MStore<Object, E> store, PropertyAccess<E> props) {
-        super(store);
+    public FindByInvoker(PropertyAccess<E> props) {
         this.props = props;
     }
 
@@ -23,7 +22,7 @@ public class FindByInvoker<E> extends MRepositoryMethodInvoker<E> {
     }
 
     @Override
-    public Object invoke(final Method method, final Object[] args) {
+    public Object invoke(final MStore<Object, E> store, final Method method, final Object[] args) {
         var sig = method.getName().substring("findBy".length()); // e.g. "AgeAndName"
         var tokens = splitByAnd(sig);                            // ["Age", "Name"]
         if (tokens.isEmpty()) {
