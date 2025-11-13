@@ -49,9 +49,8 @@ public class SimpleBackupMapper implements BackupMapper {
                 throw new IllegalArgumentException("Invalid format: " + split[1]);
             }
 
-            String body = split[1].substring(start + 1, end); // "age=12, name=impati"
+            String body = split[1].substring(start + 1, end);
 
-            // "age=12, name=impati" -> Map<String, String>
             Map<String, String> fieldMap = new HashMap<>();
             String[] parts = body.split(",");
             for (String part : parts) {

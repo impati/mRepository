@@ -8,20 +8,22 @@ import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
 
-public class BackupProcessor {
+public class FileBackupRepository implements BackupRepository {
 
     private final BackupMapper backupMapper;
     private final String dir;
 
-    public BackupProcessor(BackupMapper backupMapper, String dir) {
+    public FileBackupRepository(BackupMapper backupMapper, String dir) {
         this.backupMapper = backupMapper;
         this.dir = dir;
     }
 
+    @Override
     public <T> void save(T entity, Class<T> clazz) {
         append(RecordType.SAVE, entity, clazz);
     }
 
+    @Override
     public <T> void delete(T entity, Class<T> clazz) {
         append(RecordType.DELETE, entity, clazz);
     }
@@ -48,6 +50,7 @@ public class BackupProcessor {
         }
     }
 
+    @Override
     public <T> List<BackupRecord<T>> readAll(Class<T> clazz) {
         try {
             File file = Paths.get(dir, clazz.getSimpleName()).toFile();
@@ -56,7 +59,6 @@ public class BackupProcessor {
             }
 
             String origin = new String(Files.readAllBytes(file.toPath()));
-            System.out.println("origin=" + origin);
             return Arrays.stream(origin.split(System.lineSeparator()))
                     .map(str -> backupMapper.deserialize(str, clazz))
                     .toList();

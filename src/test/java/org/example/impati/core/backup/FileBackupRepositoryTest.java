@@ -4,11 +4,11 @@ import java.util.List;
 import org.example.impati.core.MId;
 import org.junit.jupiter.api.Test;
 
-class BackupProcessorTest {
+class FileBackupRepositoryTest {
 
     BackupMapper mapper = new SimpleBackupMapper();
 
-    BackupProcessor sut = new BackupProcessor(
+    FileBackupRepository sut = new FileBackupRepository(
             mapper,
             "/Users/jun-yeongchoe/Desktop/m-repository/src/main/resources/data/"
     );
