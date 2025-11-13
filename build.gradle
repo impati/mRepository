@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'org.example.impati'
-version = '1.0.3'
+version = '1.0.4'
 description = 'm-repository'
 
 java {
@@ -29,6 +29,7 @@ dependencyManagement {
 }
 
 dependencies {
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
