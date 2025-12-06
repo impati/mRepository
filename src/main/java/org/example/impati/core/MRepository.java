@@ -15,4 +15,8 @@ public interface MRepository<K, E> {
     void delete(E entity);
 
     void deleteAll(List<E> entities);
+
+    void load(E entity);
+
+    void unload(E entity);
 }

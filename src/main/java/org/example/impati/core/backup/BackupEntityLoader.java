@@ -19,9 +19,9 @@ public class BackupEntityLoader<K, E> {
         List<BackupRecord<E>> backupRecords = backupRepository.readAll(clazz);
         for (BackupRecord<E> data : backupRecords) {
             if (data.recordType() == RecordType.SAVE) {
-                repository.save(data.data());
+                repository.load(data.data());
             } else if (data.recordType() == RecordType.DELETE) {
-                repository.delete(data.data());
+                repository.unload(data.data());
             }
         }
     }

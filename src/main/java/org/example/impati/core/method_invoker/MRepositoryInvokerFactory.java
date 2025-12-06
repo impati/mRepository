@@ -18,7 +18,9 @@ public class MRepositoryInvokerFactory {
                 new FindByIdInvoker<>(),
                 new FindAllInvoker<>(),
                 new FindByInvoker<>(PropertyAccess.forType(store.entityType())),
-                new DeleteInvoker<>()
+                new DeleteInvoker<>(),
+                new LoadInvoker<>(),
+                new UnloadInvoker<>()
         );
     }
 }
