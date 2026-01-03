@@ -43,7 +43,7 @@ public abstract class AbstractInvocationHandler implements InvocationHandler {
                     .invokeWithArguments(args == null ? new Object[0] : args);
         }
 
-        throw new UnsupportedOperationException("Unsupported method: " + method);
+        return null;
     }
 
     @SuppressWarnings("unchecked")

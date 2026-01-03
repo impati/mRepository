@@ -23,6 +23,6 @@ public class MRepositoryProxy<E> extends AbstractInvocationHandler {
             }
         }
 
-        return null;
+        throw new IllegalStateException("unsupported MRepositoryMethodInvoker proxy:%s,method:%s,args:%s".formatted(proxy, method, args));
     }
 }
